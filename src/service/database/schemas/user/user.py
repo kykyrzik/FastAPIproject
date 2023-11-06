@@ -7,7 +7,7 @@ class ValidationPassword(BaseModel):
 
     @field_validator("password")
     @classmethod
-    def validate_by_regexp(password):
+    def validate_by_regexp(cls, password: str) -> str:
         pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$'
         if re.match(pattern, password) is None:
             raise ValueError('Password has incorrecr format.')

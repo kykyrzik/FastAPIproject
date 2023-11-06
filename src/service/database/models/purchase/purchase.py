@@ -1,21 +1,22 @@
-from sqlalchemy import (Column,
-                        Integer,
-                        String,
-                        Date,
-                        ForeignKey,
-                        )
+from datetime import datetime
 
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.types import TIMESTAMP
+
 from src.service.database.models.base import Base
+from src.service.database.models import item as i, user as u
 
 
 class Purchase(Base):
-    id = Column(Integer, primary_key=True, index=True)
-    delivery_address = Column(String, nullable=False)
-    purchase_date = Column(Date)
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    delivery_address: Mapped[str] = mapped_column(nullable=False)
+    purchase_date: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False)
 
-    item_id = Column(Integer, ForeignKey("item.py", ondelete="CASCADE"), nullable=False)
-    user_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    item_id: Mapped[int] = mapped_column(ForeignKey("item.py", ondelete="CASCADE"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
 
-    item = relationship("Item", back_populates="purchases")
-    user = relationship("User", back_populates="puerchase")
+    item: Mapped["i.Item"] = relationship(back_populates="purchases")
+    user: Mapped["u.User"] = relationship(back_populates="puerchase")

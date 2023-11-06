@@ -1,8 +1,9 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
 
 from src.service.database.models.base import Base
 
 
 class Authors(Base):
-    id = Column(Integer, primary_key=True, index=True)
-    fullname_author = Column(String, nullable=False, unique=True)
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    fullname_author: Mapped[int] = mapped_column(nullable=False, unique=True)

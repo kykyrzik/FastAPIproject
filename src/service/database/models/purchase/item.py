@@ -1,13 +1,16 @@
-from sqlalchemy import Column, Integer, ForeignKey, VARCHAR
-
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import relationship
+from sqlalchemy.types import VARCHAR
 
 from src.service.database.models.base import Base
+from src.service.database.models import book as b
 
 
 class Item(Base):
-    id = Column(Integer, primary_key=True, index=True)
-    book_id = Column(VARCHAR(17), ForeignKey("book.ISBN", ondelete="CASCADE"), nullable=False)
-    amount_item = Column(Integer, default=1)
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    book_id: Mapped[str] = mapped_column(VARCHAR(30), ForeignKey("book.ISBN", ondelete="CASCADE"), nullable=False)
+    amount_item: Mapped[int] = mapped_column(default=1)
 
-    book = relationship("Book", back_populates="item")
+    book: Mapped["b.Book"] = relationship(back_populates="item")
