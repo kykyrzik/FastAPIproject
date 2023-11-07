@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Optional
+from decimal import Decimal
 
 from sqlalchemy import (VARCHAR,
                         DECIMAL,
@@ -21,7 +22,7 @@ class Book(Base):
     genre_id: Mapped[int] = mapped_column(ForeignKey("genre.id", ondelete="CASCADE"), nullable=False)
     publication_date: Mapped[Optional[datetime]] = mapped_column(nullable=True)
     book_circulation: Mapped[Optional[int]] = mapped_column(nullable=True)
-    unit_price: Mapped[float] = mapped_column(DECIMAL(4, 2), nullable=False)
+    unit_price: Mapped[Decimal] = mapped_column(DECIMAL(4, 2), nullable=False)
     weight: Mapped[Optional[int]]  # in grams
     rars_id: Mapped[int] = mapped_column(ForeignKey("rars.id", ondelete="CASCADE"), nullable=False)
     number_of_pages: Mapped[int] = mapped_column(nullable=False)

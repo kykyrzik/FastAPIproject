@@ -6,4 +6,4 @@ from src.service.database.models.base import Base
 
 class Authors(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    fullname_author: Mapped[int] = mapped_column(nullable=False, unique=True)
+    fullname_author: Mapped[str] = mapped_column(nullable=False, unique=True)
