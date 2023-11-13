@@ -1,7 +1,5 @@
-from typing import Any
 from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import field_validator, Field
 
 
 class Settings(BaseSettings):
@@ -16,18 +14,22 @@ class Settings(BaseSettings):
     DB_PORT: int
     DB_PASS: str
     DB_NAME: str
-    DB_URL: str = Field(...)
+    DB_URL: str
 
-    @field_validator('DB_URL')
-    @classmethod
-    def assemble_db_url(cls, v: str, values: Any) -> str:
-        return v.format(DB_USER=values.data.get('DB_USER'),
-                        DB_PASS=values.data.get('DB_PASS'),
-                        DB_HOST=values.data.get('DB_HOST'),
-                        DB_PORT=values.data.get('DB_PORT'),
-                        DB_NAME=values.data.get('DB_NAME'))
+    @property
+    def db_url(self) -> str:
+        return self.DB_URL.format(
+            db_user=self.DB_USER,
+            db_pass=self.DB_PASS,
+            db_host=self.DB_HOST,
+            db_port=self.DB_PORT,
+            db_name=self.DB_NAME,
+        )
 
 
 @lru_cache(typed=True)
 def load_settings() -> Settings:
-    return Settings()  # type: ignore
+    return Settings()
+
+
+print(load_settings().db_url)
