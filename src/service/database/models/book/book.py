@@ -12,7 +12,7 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
 from src.service.database.models.base import Base
-from src.service.database.models import book as b
+from . import author, publisher, genre, cover_type, rars as r
 
 
 class Book(Base):
@@ -30,7 +30,7 @@ class Book(Base):
     images: Mapped[Optional[BLOB]]
     amount_book: Mapped[int] = mapped_column(nullable=False)
 
-    author: Mapped["b.author.Author"] = relationship(back_populates="book")
-    genre: Mapped["b.genre.Genre"] = relationship(back_populates="book")
-    rars: Mapped["b.rars.RARS"] = relationship(back_populates="book")
-    cover_type: Mapped["b.cover_type.CoverType"] = relationship(back_populates="book")
+    author: Mapped["author.Author"] = relationship(back_populates="book")
+    genre: Mapped["genre.Genre"] = relationship(back_populates="book")
+    rars: Mapped["r.RARS"] = relationship(back_populates="book")
+    cover_type: Mapped["cover_type.CoverType"] = relationship(back_populates="book")

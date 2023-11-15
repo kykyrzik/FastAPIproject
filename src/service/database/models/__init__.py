@@ -1,12 +1,12 @@
-from src.services.databases.models.book import (author,
+from src.service.database.models.book import (author,
                                                 book,
                                                 cover_type,
                                                 genre,
                                                 publisher,
                                                 rars)
-from app.services.databases.models.user import user
-from app.services.databases.models.base import Base
-from app.services.databases.models.order import purchase, item
+from src.service.database.models.user import user
+from src.service.database.models.base import Base
+from src.service.database.models.purchase import purchase, item
 
 
 __all__ = ("author", "user", "purchase",

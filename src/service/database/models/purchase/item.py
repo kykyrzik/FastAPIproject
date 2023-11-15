@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.types import VARCHAR
 
 from src.service.database.models.base import Base
-from src.service.database.models import book as b
+from src.service.database.models.book.book import Book
 
 
 class Item(Base):
@@ -13,4 +13,4 @@ class Item(Base):
     book_id: Mapped[str] = mapped_column(VARCHAR(30), ForeignKey("book.ISBN", ondelete="CASCADE"), nullable=False)
     amount_item: Mapped[int] = mapped_column(default=1)
 
-    book: Mapped["b.Book"] = relationship(back_populates="item")
+    book: Mapped["Book"] = relationship(back_populates="item")
