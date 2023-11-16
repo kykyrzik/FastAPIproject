@@ -1,4 +1,4 @@
-from typing import TypeVar, ClassVar, Optional, Type, Any
+from typing import TypeVar, ClassVar, Optional, Type, Any, List
 from abc import ABC
 
 from sqlalchemy import select, update, delete
@@ -29,6 +29,16 @@ class CRUDBase(ABC):
                     .where(value == field)
                     )
             result = await self._session.execute(stmt).scalar()
+            return result
+        except NoResultFound:
+            return None
+
+    async def _get_list(self, _limit: int) -> Optional[List[Model]]:
+        try:
+            stmt = (select(self.model)
+                    .limit(_limit)
+                    )
+            result = await self._session.execute(stmt).scalar().all()
             return result
         except NoResultFound:
             return None
