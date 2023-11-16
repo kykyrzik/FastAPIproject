@@ -15,11 +15,11 @@ class UserRepositories(CRUDBase):
         new_user = data.__dict__
         password = new_user.pop("passsword")
         new_user["password"] = hashed_password(password)  # temp stub
-        return await self._create(new_user)
+        return await self._create(data=new_user)
 
     async def delete_user(self, user_id: int) -> bool:
-        return await self._delete(self.model, user_id)
+        return await self._delete(field=self.model, model_id=user_id)
 
     async def update_user(self, user_id: int, data: UpdateUsername) -> UserBase:
         data = data.__dict__
-        return await self._update(self.model, user_id, data)
+        return await self._update(field=self.model, value=user_id, data=data)
