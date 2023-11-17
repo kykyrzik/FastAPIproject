@@ -4,11 +4,23 @@ from pydantic import BaseModel
 
 
 class PurchaseDTO(BaseModel):
-    id: int
-    delivary_address: str
     purchase_date: datetime
     item_id: int
     user_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class UpdateAddressDTO(BaseModel):
+    delivery_address: str
+
+    class Config:
+        orm_mode = True
+
+
+class PurchaseInDB(PurchaseDTO, UpdateAddressDTO):
+    id: int
 
     class Config:
         orm_mode = True
