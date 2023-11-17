@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class GenrDTO(BaseModel):
+class GenreDTO(BaseModel):
     id: int
     genre: str
 

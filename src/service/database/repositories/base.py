@@ -51,7 +51,7 @@ class CRUDBase(ABC):
         result = await self._session.execute(stmt).scalar()
         return result
 
-    async def _delete(self, field: Any, model_id: int) -> bool:
+    async def _delete(self, field: Any, model_id: Any) -> bool:
         stmt = (
             delete(self.model).
             where(field == model_id)
