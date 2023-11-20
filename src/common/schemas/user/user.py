@@ -24,6 +24,12 @@ class UserCreateDTO(UserBase, ValidationPassword):
         orm_mode = True
 
 
+class UserInDB(UserCreateDTO):
+    id: int
+    class Config:
+        orm_mode = True
+
+
 class UpdateUsername(BaseModel):
     """How swap password used class validation"""
     username: str
