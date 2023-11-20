@@ -11,7 +11,7 @@ class UserRepositories(CRUDBase):
 
     async def create_user(self, data: UserCreateDTO) -> Optional[UserInDB]:
         new_user = data.__dict__
-        password = new_user.pop("passsword")
+        password = new_user.pop("password")
         new_user["password"] = secturity.get_password_hash(password)
         return await self._create(data=new_user)
 

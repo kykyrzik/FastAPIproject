@@ -6,9 +6,9 @@ from src.service.database.repositories.user.user_repositories import UserReposit
 router = APIRouter()
 
 
-@router.post('/create')
+@router.post('/create/')
 async def user_create(user: UserCreateDTO,
-                      crud: UserRepositories = Depends()
+                      crud: UserRepositories = Depends(UserRepositories)
                       ) -> dict[str, UserInDB | str]:
     result = await crud.create_user(user)
     return {'result': result,
@@ -18,7 +18,7 @@ async def user_create(user: UserCreateDTO,
 @router.put('/update/{user_id}')
 async def update_user(user_id: int,
                       data: UpdateUsername,
-                      crud: UserRepositories = Depends()
+                      crud: UserRepositories = Depends(UserRepositories)
                       ) -> UserInDB:
 
     return await crud.update_user(user_id=user_id, data=data)
@@ -26,7 +26,7 @@ async def update_user(user_id: int,
 
 @router.delete('/delete/{user_id}')
 async def delete_user(user_id: int,
-                      crud: UserRepositories = Depends()
+                      crud: UserRepositories = Depends(UserRepositories)
                       ) -> dict[str, str]:
 
     result = await crud.delete_user(user_id=user_id)

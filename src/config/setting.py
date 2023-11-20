@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
-        env_file="./.env",
+        env_file="D:/store_project/.env",
         env_file_encoding="utf-8",
         case_sensitive=False
     )
@@ -30,6 +30,3 @@ class Settings(BaseSettings):
 @lru_cache(typed=True)
 def load_settings() -> Settings:
     return Settings()
-
-
-print(load_settings().db_url)

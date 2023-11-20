@@ -21,13 +21,13 @@ class UserBase(BaseModel):
 
 class UserCreateDTO(UserBase, ValidationPassword):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserInDB(UserCreateDTO):
     id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UpdateUsername(BaseModel):
@@ -35,4 +35,4 @@ class UpdateUsername(BaseModel):
     username: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True

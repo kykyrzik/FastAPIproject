@@ -6,11 +6,11 @@ class BaseItem(BaseModel):
     amount_item: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class ItemDTO(BaseItem):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
