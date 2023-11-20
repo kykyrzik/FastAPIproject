@@ -2,7 +2,7 @@ from typing import Optional
 
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.user.user import User
-from src.service.database.schemas.user.user import UserCreateDTO, UserBase, UpdateUsername
+from src.common.schemas.user.user import UserCreateDTO, UserBase, UpdateUsername
 
 
 class UserRepositories(CRUDBase):

@@ -2,7 +2,7 @@ from typing import Optional, List
 
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.book.rars import RARS
-from src.service.database.schemas.book.rars import RARDDTO
+from src.common.schemas.book.rars import RARDDTO
 
 
 class RARSRepo(CRUDBase):

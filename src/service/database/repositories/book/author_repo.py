@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.book.author import Author
-from src.service.database.schemas.book.author import AuthorsDTO
+from src.common.schemas.book.author import AuthorsDTO
 
 
 class AuthorRepositories(CRUDBase):

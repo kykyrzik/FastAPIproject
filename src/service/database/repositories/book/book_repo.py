@@ -1,8 +1,8 @@
-from typing import Optional, List, Any
+from typing import Optional, List
 
 from src.service.database.models.book.book import Book
 from src.service.database.repositories.base import CRUDBase
-from src.service.database.schemas.book.book import BookDTO, UpdateBookDTO
+from src.common.schemas.book.book import BookDTO, UpdateBookDTO
 
 
 class BookRepo(CRUDBase):

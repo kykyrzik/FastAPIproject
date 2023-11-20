@@ -1,8 +1,8 @@
-from typing import Optional, List, Any
+from typing import Optional, List
 
 from src.service.database.models.book.publisher import Publisher
-from src.service.database.schemas.book.publisher import PublisherDTO
-from src.service.database.repositories.base import CRUDBase, Model
+from src.common.schemas.book.publisher import PublisherDTO
+from src.service.database.repositories.base import CRUDBase
 
 
 class PublisherRepo(CRUDBase):

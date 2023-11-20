@@ -2,7 +2,7 @@ from typing import Optional, List
 
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.book.cover_type import CoverType
-from src.service.database.schemas.book.cover_type import CoverTypeDTO
+from src.common.schemas.book.cover_type import CoverTypeDTO
 
 
 class CoverTypeRepo(CRUDBase):

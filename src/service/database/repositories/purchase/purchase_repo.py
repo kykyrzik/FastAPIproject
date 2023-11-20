@@ -2,8 +2,8 @@ from typing import List, Optional
 
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.purchase.purchase import Purchase
-from src.service.database.schemas.purchase.purchase import (PurchaseInDB,
-                                                            UpdateAddressDTO)
+from src.common.schemas.purchase.purchase import (PurchaseInDB,
+                                                  UpdateAddressDTO)
 
 
 class PurchaseRepo(CRUDBase):
