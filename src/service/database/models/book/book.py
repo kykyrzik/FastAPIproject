@@ -4,7 +4,6 @@ from decimal import Decimal
 
 from sqlalchemy import (VARCHAR,
                         DECIMAL,
-                        BLOB,
                         ForeignKey)
 
 from sqlalchemy.orm import relationship
@@ -27,7 +26,6 @@ class Book(Base):
     rars_id: Mapped[int] = mapped_column(ForeignKey("rars.id", ondelete="CASCADE"), nullable=False)
     number_of_pages: Mapped[int] = mapped_column(nullable=False)
     cover_type_id: Mapped[int] = mapped_column(ForeignKey("cover_type.id", ondelete="CASCADE"), nullable=False)
-    images: Mapped[Optional[BLOB]]
     amount_book: Mapped[int] = mapped_column(nullable=False)
 
     author: Mapped["author.Author"] = relationship(back_populates="book")
