@@ -3,6 +3,7 @@ from typing import Optional
 from src.service.database.repositories.base import CRUDBase
 from src.service.database.models.user.user import User
 from src.common.schemas.user.user import UserCreateDTO,  UpdateUsername, UserInDB
+from src.service.security import secturity
 
 
 class UserRepositories(CRUDBase):
@@ -11,7 +12,7 @@ class UserRepositories(CRUDBase):
     async def create_user(self, data: UserCreateDTO) -> Optional[UserInDB]:
         new_user = data.__dict__
         password = new_user.pop("passsword")
-        new_user["password"] = hashed_password(password)  # temp stub
+        new_user["password"] = secturity.get_password_hash(password)
         return await self._create(data=new_user)
 
     async def delete_user(self, user_id: int) -> bool:
