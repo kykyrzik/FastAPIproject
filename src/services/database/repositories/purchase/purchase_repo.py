@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from src.service.database.repositories.base import CRUDBase
-from src.service.database.models.purchase.purchase import Purchase
+from src.services.database.repositories.base import CRUDBase
+from src.services.database.models.purchase.purchase import Purchase
 from src.common.schemas.purchase.purchase import (PurchaseInDB,
                                                   UpdateAddressDTO)
 

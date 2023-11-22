@@ -1,7 +1,7 @@
 from typing import Optional, List
 
-from src.service.database.repositories.base import CRUDBase
-from src.service.database.models.book.rars import RARS
+from src.services.database.repositories.base import CRUDBase
+from src.services.database.models.book.rars import RARS
 from src.common.schemas.book.rars import RARDDTO
 
 

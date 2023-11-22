@@ -1,7 +1,7 @@
 from typing import Optional, List
 
-from src.service.database.repositories.base import CRUDBase
-from src.service.database.models.book.genre import Genre
+from src.services.database.repositories.base import CRUDBase
+from src.services.database.models.book.genre import Genre
 from src.common.schemas import GenreDTO
 
 

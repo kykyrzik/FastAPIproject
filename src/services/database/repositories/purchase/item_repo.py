@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from src.service.database.repositories.base import CRUDBase
-from src.service.database.models.purchase.item import Item
+from src.services.database.repositories.base import CRUDBase
+from src.services.database.models.purchase.item import Item
 from src.common.schemas.purchase.item import ItemDTO, BaseItem
 
 
