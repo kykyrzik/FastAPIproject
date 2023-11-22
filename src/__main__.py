@@ -1,6 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 import uvicorn
-
 from src.api.v1 import api
 
 
