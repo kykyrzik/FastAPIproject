@@ -14,7 +14,7 @@ class BookRepo(CRUDBase):
     async def get_book(self, book_id: str) -> Optional[BookDTO]:
         return await self._get(field=self.model, value=book_id)
 
-    async def get_list_book(self, limit: int = 100) -> Optional[List[BookDTO]]:
+    async def get_list_book(self, limit: int = 20) -> Optional[List[BookDTO]]:
         return await self._get_list(limit)
 
     async def update_book(self, book_id: str, data: UpdateBookDTO) -> Optional[BookDTO]:

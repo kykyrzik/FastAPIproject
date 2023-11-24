@@ -2,7 +2,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from src.common.schemas.user.user import UserCreateDTO, UpdateUsername, UserInDB
+from src.common.schemas.user.user import UserCreateDTO, UpdateUsername
 from src.services.database.repositories.user.user_repositories import UserRepositories
 
 
@@ -12,13 +12,13 @@ router = APIRouter()
 @router.post('/create/')
 async def user_create(user: UserCreateDTO,
                       crud: UserRepositories = Depends()
-                      ) -> dict[str, UserInDB | str]:
+                      ) -> Any:
     result = await crud.create_user(user)
     return {'result': result,
             'message': 'confirm'}
 
 
-@router.put('/update/{user_id}')
+@router.patch('/update/{user_id}')
 async def update_user(user_id: int,
                       data: UpdateUsername,
                       crud: UserRepositories = Depends()

@@ -1,10 +1,10 @@
-from datetime import datetime
 from typing import Optional
 from decimal import Decimal
 
 from sqlalchemy import (VARCHAR,
                         DECIMAL,
-                        ForeignKey)
+                        ForeignKey,
+                        )
 
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import Mapped
@@ -19,9 +19,9 @@ class Book(Base):
     author_id: Mapped[int] = mapped_column(ForeignKey("author.id", ondelete="CASCADE"), nullable=False)
     genre_id: Mapped[int] = mapped_column(ForeignKey("genre.id", ondelete="CASCADE"), nullable=False)
     publisher_id: Mapped[int] = mapped_column(ForeignKey("publisher.id", ondelete="CASCADE"), nullable=False)
-    publication_date: Mapped[Optional[datetime]] = mapped_column(nullable=True)
+    publication_date: Mapped[Optional[int]] = mapped_column(nullable=True)
     book_circulation: Mapped[Optional[int]] = mapped_column(nullable=True)
-    unit_price: Mapped[Decimal] = mapped_column(DECIMAL(4, 2), nullable=False)
+    unit_price: Mapped[Decimal] = mapped_column(DECIMAL(6, 2), nullable=False)
     weight: Mapped[Optional[int]]  # in grams
     rars_id: Mapped[int] = mapped_column(ForeignKey("rars.id", ondelete="CASCADE"), nullable=False)
     number_of_pages: Mapped[int] = mapped_column(nullable=False)
