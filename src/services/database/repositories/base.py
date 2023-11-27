@@ -30,18 +30,19 @@ class CRUDBase(ABC):
             stmt = (select(self.model)
                     .where(value == field)
                     )
-            result = await self._session.execute(stmt).scalars()
+            result = await self._session.scalar(stmt)
             return result
         except NoResultFound:
             return None
 
-    async def _get_list(self, _limit: int) -> Optional[List[Model]]:
+    async def _get_list(self, limit: int, offset: int) -> Optional[List[Model]]:
         try:
             stmt = (select(self.model)
-                    .limit(_limit)
+                    .offset(offset)
+                    .limit(limit)
                     )
-            result = await self._session.execute().scalars().all()
-            return result
+            result = await self._session.scalars(stmt)
+            return result.all()
         except NoResultFound:
             return None
 

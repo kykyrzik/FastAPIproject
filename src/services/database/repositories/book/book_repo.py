@@ -12,13 +12,13 @@ class BookRepo(CRUDBase):
         return await self._create(data.__dict__)
 
     async def get_book(self, book_id: str) -> Optional[BookDTO]:
-        return await self._get(field=self.model, value=book_id)
+        return await self._get(field=self.model.id, value=book_id)
 
     async def get_list_book(self, limit: int = 20) -> Optional[List[BookDTO]]:
         return await self._get_list(limit)
 
     async def update_book(self, book_id: str, data: UpdateBookDTO) -> Optional[BookDTO]:
-        return await self._update(field=self.model, value=book_id, data=data.__dict__)
+        return await self._update(field=self.model.id, value=book_id, data=data.__dict__)
 
     async def delete_book(self, book_id: str) -> bool:
-        return await self._delete(field=self.model, model_id=book_id)
+        return await self._delete(field=self.model.id, model_id=book_id)
