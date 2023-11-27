@@ -53,7 +53,7 @@ class CRUDBase(ABC):
                 .values(**data)
                 .returning(self.model)
             )
-        result = await self._session.scalars(stmt)
+        result = await self._session.scalar(stmt)
         await self._session.commit()
         await self._session.refresh(result)
         return result

@@ -24,7 +24,7 @@ class UserCreateDTO(UserBase, ValidationPassword):
         from_attributes = True
 
 
-class UserInDB(UserCreateDTO):
+class UserInDB(UserBase):
     id: int
 
     class Config:
