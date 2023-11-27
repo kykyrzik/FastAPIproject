@@ -20,4 +20,4 @@ class UserRepositories(CRUDBase):
 
     async def update_user(self, user_id: int, data: UpdateUsername) -> UpdateUsername:
         data = data.__dict__
-        return await self._update(field=self.model, value=user_id, data=data)
+        return await self._update(field=self.model.id, value=user_id, data=data)
