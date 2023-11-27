@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from src.common.schemas.book.book import BookDTO, UpdateBookDTO, ValidationISBN
 from src.services.database.repositories.book.book_repo import BookRepo
 
+
 router = APIRouter()
 
 
@@ -50,4 +51,3 @@ async def delete_book(book_id: str,
     result = await crud.delete_book(book_id)
     if result:
         return {'message': "success"}
-

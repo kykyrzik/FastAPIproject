@@ -32,7 +32,7 @@ async def get_list_author(limit: int = 20,
     return await crud.get_list_authors(limit, offset)
 
 
-@router.patch(  "/update_author/{author_id}")
+@router.patch("/update_author/{author_id}")
 async def update_author(author_id: int,
                         data: AuthorsDTO,
                         crud: AuthorRepositories = Depends()
