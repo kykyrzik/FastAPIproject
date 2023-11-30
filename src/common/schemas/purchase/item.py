@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 class BaseItem(BaseModel):
+    name: str
     book_id: str
     amount_item: int
 

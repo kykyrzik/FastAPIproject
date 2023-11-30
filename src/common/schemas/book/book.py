@@ -1,5 +1,4 @@
 from typing import Optional
-from decimal import Decimal
 import re
 
 from pydantic import BaseModel, field_validator, condecimal
@@ -29,7 +28,7 @@ class BookDTO(ValidationISBN, UpdateBookDTO):
     publication_date: Optional[int] = None
     book_circulation: Optional[int] = None
     weight: Optional[int]
-    rars_id: int
+    rars: str
     number_of_pages: int
-    cover_type_id: int
-    publisher_id: int
+    cover_type: str
+    publisher: str

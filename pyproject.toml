@@ -18,6 +18,8 @@ pydantic-settings = "^2.0.3"
 asyncpg = "^0.29.0"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 pydantic = {extras = ["email"], version = "^2.5.1"}
+uuid6 = "^2023.5.2"
+itsdangerous = "^2.1.2"
 
 
 [build-system]

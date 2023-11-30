@@ -1,18 +1,16 @@
-from typing import List, Optional
+from typing import Optional
 
 from src.services.database.repositories.base import CRUDBase
 from src.services.database.models.purchase.item import Item
-from src.common.schemas.purchase.item import ItemDTO, BaseItem
+from src.common.schemas.purchase.item import ItemDTO
 
 
 class ItemRepo(CRUDBase):
     model = Item
 
-    async def add_item(self, data: BaseItem) -> Optional[ItemDTO]:
-        return await self._create(data=data.__dict__)
-
-    async def get_item(self, item_id: int) -> Optional[ItemDTO]:
-        return await self._get(field=self.model, value=item_id)
-
-    async def get_list_item(self, limit: int = 10) -> Optional[List[ItemDTO]]:
-        return await self._get_list(limit)
+    async def add_item(self,
+                       book_id: str,
+                       amount_item: int
+                       ) -> Optional[ItemDTO]:
+        item = dict(book_id=book_id, amount_item=amount_item)
+        return await self._create(item)
