@@ -1,13 +1,12 @@
 from typing import Any
-from datetime import datetime
 
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
 
 from src.services.database.repositories.purchase.item_repo import ItemRepo
 from src.services.database.repositories.purchase.purchase_repo import PurchaseRepo
-from src.common.schemas.purchase.purchase import PurchaseCreateDTO
 from src.services.cart.cart import Cart
+from .create_purchase import create_purchase_DTO
 
 router = APIRouter()
 
@@ -27,15 +26,9 @@ async def create_purchase(request: Request,
     for book_id in values:
         item_id = (await item_crud.add_item(book_id=book_id,
                                             amount_item=values[book_id]["quality"]
-                                            )
-                   ).id
-
-        data_purchase = PurchaseCreateDTO(price=total_price,
-                                          item_id=item_id,
-                                          user_id=user_id,
-                                          delivery_address=address,
-                                          purchase_date=datetime.now())
-        await purchase_crud.add_purchase(data_purchase)
+                                            )).id
+        await purchase_crud.add_purchase(create_purchase_DTO(total_price, item_id, user_id, address))
+    cart.clear()
     return {"successes": True}
 
 

@@ -26,7 +26,6 @@ class Settings(BaseSettings):
             db_name=self.DB_NAME,
         )
 
-
 @lru_cache(typed=True)
 def load_settings() -> Settings:
     return Settings()

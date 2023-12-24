@@ -19,5 +19,5 @@ class Purchase(Base):
     item_id: Mapped[int] = mapped_column(ForeignKey("item.id", ondelete="CASCADE"), nullable=False)
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
 
-    item: Mapped["Item"] = relationship(back_populates="purchase")
+    item: Mapped[List["Item"]] = relationship(back_populates="purchase")
     user: Mapped["User"] = relationship(back_populates="purchase")
