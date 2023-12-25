@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_URL: str
 
+    SECRET_KEY: str
+
     @property
     def db_url(self) -> str:
         return self.DB_URL.format(
@@ -25,6 +27,7 @@ class Settings(BaseSettings):
             db_port=self.DB_PORT,
             db_name=self.DB_NAME,
         )
+
 
 @lru_cache(typed=True)
 def load_settings() -> Settings:
