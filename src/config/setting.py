@@ -1,4 +1,6 @@
 from functools import lru_cache
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,8 +18,6 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_URL: str
 
-    SECRET_KEY: str
-
     @property
     def db_url(self) -> str:
         return self.DB_URL.format(
@@ -29,6 +29,17 @@ class Settings(BaseSettings):
         )
 
 
+class AuthJWT(BaseSettings):
+    private_key_path: Path = Path(__file__).parent.parent.parent / "certs" / "private-key.pem"
+    public_key_path: Path = Path(__file__).parent.parent.parent / "certs" / "public-key.pem"
+    ALGORITHM: str = "RS256"
+
+
 @lru_cache(typed=True)
 def load_settings() -> Settings:
     return Settings()
+
+
+@lru_cache(typed=True)
+def load_auth_jwt() -> AuthJWT:
+    return AuthJWT()

@@ -161,4 +161,6 @@ pyrightconfig.json
 .ionide
 .idea
 qodana.yaml
+.certs/
+certs/
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,visualstudiocode

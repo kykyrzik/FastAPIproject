@@ -7,7 +7,7 @@ from src.services.database.models.user.user import User
 from src.common.schemas.user.user import UserCreateDTO,  UpdateUsername, UserInDB
 from src.services.security import secturity
 from src.common.converts.user import convert_user_model_to_dto
-from src.services.security.JWT import create_access_token
+from src.services.security.jwt import create_access_token
 
 
 class UserRepositories(CRUDBase):
@@ -27,9 +27,9 @@ class UserRepositories(CRUDBase):
         user = await self.get(email=email)
         if not user or not secturity.verify_password(password, user.password):
             raise HTTPException(status_code=404, detail="incorrect email or password")
-        if user.is_active:
+        elif not user.is_active:
             raise HTTPException(status_code=401, detail="Inactive user")
-        access_token_minute = timedelta(minutes=30)
+        access_token_minute = timedelta(minutes=2)
         return {"access_token": create_access_token(
                     data={"sub": {
                         "password": password,
@@ -46,9 +46,6 @@ class UserRepositories(CRUDBase):
                                 value=user_id,
                                 data=data
                                 )
-
-    async def is_active(self, user: UserInDB) -> bool:
-        return user.is_active
 
     async def delete_user(self, user_id: int) -> bool:
         return await self._delete(field=self.model.id, model_id=user_id)

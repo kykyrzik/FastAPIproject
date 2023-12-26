@@ -4,4 +4,4 @@ from src.config.setting import load_settings
 
 
 def setup_middleware(app: FastAPI) -> None:
-    app.add_middleware(SessionMiddleware, secret_key=load_settings().SECRET_KEY)
+    app.add_middleware(SessionMiddleware, secret_key="Test")  # TODO rework middleware

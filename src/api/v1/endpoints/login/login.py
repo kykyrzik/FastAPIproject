@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 
 from src.services.database.repositories.user.user_repositories import UserRepositories
-from src.services.security.JWT import verify_token
+from src.services.security.jwt import decode_access_token
 
 router = APIRouter(tags=["Login"])
 
@@ -20,7 +20,7 @@ async def login_access_token(crud: UserRepositories = Depends(),
 async def activate_user(token: str,
                         crud: UserRepositories = Depends()
                         ) -> dict[str, bool | str]:
-    data_in_token = get_useful_data_in_token(token)
+    data_in_token = decode_access_token(token)
 
     if not data_in_token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
