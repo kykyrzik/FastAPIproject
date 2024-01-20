@@ -42,5 +42,3 @@ async def cart_delete(request: Request, book_id: str):
         return {"successes": True}
     except AttributeError:
         raise HTTPException(status_code=404, detail=f"There is no book with id={book_id} in the cart")
-
-

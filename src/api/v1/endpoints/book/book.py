@@ -1,10 +1,7 @@
-from typing import List, Any
-
 from fastapi import APIRouter, Depends, HTTPException
 
 from src.common.schemas.book.book import BookDTO, UpdateBookDTO, ValidationISBN
 from src.services.database.repositories.book.book_repo import BookRepo
-
 
 router = APIRouter()
 
@@ -12,7 +9,7 @@ router = APIRouter()
 @router.post("/add_book")
 async def add_book(book: BookDTO,
                    crud: BookRepo = Depends()
-                   ) -> Any:
+                   ) -> BookDTO:
     result = await crud.add_book(book)
     return {"result": result,
             "message": "confirm"}
@@ -21,14 +18,14 @@ async def add_book(book: BookDTO,
 @router.get("/get_book/{book_id}")
 async def get_book(book_id: str,
                    crud: BookRepo = Depends()
-                   ) -> Any:
+                   ) -> BookDTO:
     return await crud.get_book(book_id)
 
 
 @router.get("/get_list")
 async def get_list_book(limit: int = 100,
                         crud: BookRepo = Depends()
-                        ) -> Any:
+                        ) -> list[BookDTO]:
     return await crud.get_list_book(limit)
 
 
@@ -36,7 +33,7 @@ async def get_list_book(limit: int = 100,
 async def update_book(data: UpdateBookDTO,
                       book_id: str,
                       crud: BookRepo = Depends()
-                      ) -> Any:
+                      ) -> UpdateBookDTO:
     if ValidationISBN(ISBN=book_id) is None:
         raise HTTPException(status_code=404, detail="book does not exists")
     return await crud.update_book(book_id, data)
@@ -45,7 +42,7 @@ async def update_book(data: UpdateBookDTO,
 @router.delete("/delete_book/{book_id}")
 async def delete_book(book_id: str,
                       crud: BookRepo = Depends()
-                      ) -> Any:
+                      ) -> bool:
     if ValidationISBN(ISBN=book_id) is None:
         raise HTTPException(status_code=404, detail="book does not exists")
     result = await crud.delete_book(book_id)

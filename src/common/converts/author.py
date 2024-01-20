@@ -7,4 +7,3 @@ def convert_author_model_to_dto(author: Author) -> AuthorInDB:
                       name=author.name,
                       surname=author.surname
                       )
-

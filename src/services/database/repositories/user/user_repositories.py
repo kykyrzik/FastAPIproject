@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 from src.services.database.repositories.base import CRUDBase
 from src.services.database.models.user.user import User
-from src.common.schemas.user.user import UserCreateDTO,  UpdateUsername, UserInDB
+from src.common.schemas.user.user import UserCreateDTO, UpdateUsername, UserInDB
 from src.services.security import secturity
 from src.common.converts.user import convert_user_model_to_dto
 from src.services.security.jwt import create_access_token
@@ -30,22 +30,20 @@ class UserRepositories(CRUDBase):
         elif not user.is_active:
             raise HTTPException(status_code=401, detail="Inactive user")
         access_token_minute = timedelta(minutes=2)
-        return {"access_token": create_access_token(
-                    data={"sub": {
-                        "password": password,
-                        "email": email}
-                    },
-                    expires_delta=access_token_minute),
-                "token_type": "bearer"
-                }
+        return {"access_token": create_access_token(data={"sub": {
+            "password": password,
+            "email": email}
+        },
+            expires_delta=access_token_minute),
+            "token_type": "bearer"
+        }
 
     async def activate_user(self, user_id: int) -> UserInDB | bool:
         data = {'is_active': True}
-        return await self._update(
-                                field=self.model.id,
-                                value=user_id,
-                                data=data
-                                )
+        return await self._update(field=self.model.id,
+                                  value=user_id,
+                                  data=data
+                                  )
 
     async def delete_user(self, user_id: int) -> bool:
         return await self._delete(field=self.model.id, model_id=user_id)

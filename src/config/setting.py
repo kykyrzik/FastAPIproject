@@ -4,10 +4,13 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+PATH_TO_SRC = Path(__file__).parent.parent.parent
+
+
 class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
-        env_file="./.env",
+        env_file=f"{PATH_TO_SRC}/.env",
         env_file_encoding="utf-8",
         case_sensitive=False
     )
@@ -20,7 +23,7 @@ class Settings(BaseSettings):
 
     @property
     def db_url(self) -> str:
-        return self.DB_URL.format(
+        return self.DB_URL.formato(
             db_user=self.DB_USER,
             db_pass=self.DB_PASS,
             db_host=self.DB_HOST,

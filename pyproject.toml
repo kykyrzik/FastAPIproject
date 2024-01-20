@@ -1,12 +1,13 @@
 [tool.poetry]
-name = "store-project"
+name = "fastapiproject"
 version = "0.1.0"
 description = ""
-authors = ["Nick Ivanukov"]
+authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+asyncpg = "^0.29.0"
 fastapi = {extras = ["full"], version = "^0.104.0"}
 sqlalchemy = "^2.0.22"
 mypy = "^1.6.1"
@@ -15,7 +16,6 @@ alembic = "^1.12.1"
 python-dotenv = "^1.0.0"
 uvicorn = "^0.23.2"
 pydantic-settings = "^2.0.3"
-asyncpg = "^0.29.0"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 pydantic = {extras = ["email"], version = "^2.5.1"}
 uuid6 = "^2023.5.2"
@@ -23,7 +23,6 @@ itsdangerous = "^2.1.2"
 python-multipart = "^0.0.6"
 pyjwt = {extras = ["cryptography"], version = "^2.8.0"}
 cryptography = "^41.0.7"
-
 
 [build-system]
 requires = ["poetry-core"]

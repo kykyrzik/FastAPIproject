@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 import uvicorn
 from src.api.v1 import api
 from src.middleware.add_midleware import setup_middleware

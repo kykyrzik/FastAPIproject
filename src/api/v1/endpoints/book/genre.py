@@ -38,4 +38,3 @@ async def update_genre(author_id: int,
                        crud: GenreRepo = Depends(),
                        ) -> Any:
     return await crud.update_genre(data, author_id)
-

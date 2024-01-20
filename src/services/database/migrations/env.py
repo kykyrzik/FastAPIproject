@@ -29,7 +29,7 @@ if config.config_file_name is not None:
 target_metadata = Base.metadata
 # target_metadata = None
 
-# other values from the config, defined by the needs of env.py,
+# other values from the config, defined by the needs of .env,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.

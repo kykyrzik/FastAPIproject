@@ -47,12 +47,11 @@ class CRUDBase(ABC):
             return None
 
     async def _update(self, field: Any, value: Any, data: dict) -> Optional[Model]:
-        stmt = (
-                update(self.model)
+        stmt = (update(self.model)
                 .where(field == value)
                 .values(**data)
                 .returning(self.model)
-            )
+                )
         result = await self._session.scalar(stmt)
         await self._session.commit()
         await self._session.refresh(result)
