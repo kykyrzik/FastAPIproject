@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     @property
     def db_url(self) -> str:
-        return self.DB_URL.formato(
+        return self.DB_URL.format(
             db_user=self.DB_USER,
             db_pass=self.DB_PASS,
             db_host=self.DB_HOST,
