@@ -24,7 +24,15 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 WORKDIR $PYSETUP_PATH
 
 COPY poetry.lock pyproject.toml ./
+COPY alembic.ini alembic.ini
+RUN poetry install
+
+WORKDIR opt/project
+
+EXPOSE 8000
+
+COPY . .
 
 WORKDIR src/
 
-EXPOSE 8000
+CMD ["python", "-m src"]

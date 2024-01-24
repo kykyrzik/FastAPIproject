@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+
 from src.api.v1 import api
 from src.middleware.add_midleware import setup_middleware
 
@@ -11,7 +12,7 @@ app.include_router(api.router)
 
 
 def main() -> None:
-    uvicorn.run("main:app", host='127.0.0.1', port=8000)
+    uvicorn.run("main:app", host='127.17.0.1', port=8000)
 
 
 if __name__ == "__main__":
