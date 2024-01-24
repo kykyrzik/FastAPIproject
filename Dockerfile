@@ -25,8 +25,14 @@ WORKDIR $PYSETUP_PATH
 
 COPY poetry.lock pyproject.toml ./
 COPY alembic.ini alembic.ini
-RUN poetry update
+RUN poetry install
+
+WORKDIR opt/project
+
+EXPOSE 8000
+
+COPY . .
 
 WORKDIR src/
 
-EXPOSE 8000
+CMD ["python", "-m src"]

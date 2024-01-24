@@ -5,7 +5,7 @@ services:
     build: .
     volumes:
       - ./:/usr/src/
-    working_dir: /usr/src/
+    working_dir: /usr/project/src
     command: sh -c 'alembic merge heads && python -m src'
     networks:
       - app-network
@@ -15,7 +15,6 @@ services:
       - ./.env
     depends_on:
       - database
-
 
   database:
     image: postgres:latest
