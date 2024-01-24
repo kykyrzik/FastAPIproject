@@ -1,8 +1,4 @@
-version: 3.10.12
-
-networks:
-    app-network:
-        external: true
+version: "3"
 
 services:
   web:
@@ -10,7 +6,7 @@ services:
     volumes:
       - ./:/usr/src/
     working_dir: /usr/src/
-    command: sh -c 'alembic upgrade head && python -m src'
+    command: sh -c 'alembic merge heads && python -m src'
     networks:
       - app-network
     ports:
@@ -20,12 +16,13 @@ services:
     depends_on:
       - database
 
+
   database:
     image: postgres:latest
     container_name: postgres_container
     restart: always
     volumes:
-      - /home/local_postgres_data:/var/lib/postgresql/data/
+      - ./home/local_postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
@@ -34,3 +31,9 @@ services:
       - app-network
     ports:
       - "25432:5432"
+
+
+
+networks:
+    app-network:
+      #external: true
